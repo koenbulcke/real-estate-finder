@@ -9,7 +9,7 @@
 */
 // Some starting data
 
-// In-memory data store (fake backend API)
+// Simulate a backend with an in-memory array of properties
 let properties = [
   {
     id: 1,
@@ -27,36 +27,27 @@ let properties = [
   }
 ]
 
-// ✅ Read: Get all properties
+// READ: Return all properties (called by Home.jsx)
 export function getProperties() {
   return properties
 }
 
-// ✅ Read one: Find by ID
+// READ (single): Find one property by its ID (called by PropertyDetail.jsx)
 export function getPropertyById(id) {
   return properties.find(p => p.id === id)
 }
 
-// ✅ Create: Add new property
+// CREATE: Add a new property (called by AddProperty.jsx)
 export function addProperty(property) {
   const newProperty = {
-    id: Date.now(), // Simulate unique ID
+    id: Date.now(),
     ...property,
     price: parseFloat(property.price)
   }
   properties.push(newProperty)
 }
 
-// ✅ Update: Modify existing property
-export function updateProperty(id, updatedData) {
-  const index = properties.findIndex(p => p.id === id)
-  if (index !== -1) {
-    properties[index] = { ...properties[index], ...updatedData }
-  }
-}
-
-// ✅ Delete: Remove property by ID
+// DELETE: Remove a property by ID (called by PropertyDetail.jsx)
 export function deleteProperty(id) {
   properties = properties.filter(p => p.id !== id)
 }
-
