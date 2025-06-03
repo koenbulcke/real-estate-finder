@@ -1,17 +1,56 @@
 <!--index.html
 Le fichier HTML principal. Vite utilise ce fichier comme point d'entrée pour l'application. Il contient une balise
 <div id="root"></div> où React rendra l'application. (Application SPA)
+
+How it works
+
+    <script type="module" src="/src/main.jsx"></script>
+
+        Vite replaces this import at dev‐time with a special WebSocket‐based loader for HMR (hot‐module reloading).
+
+        At build‐time (npm run build), Vite bundles and injects the final main.js (compiled React code) in its place.
+
+    <div id="root"></div>
+
+        In src/main.jsx, you saw:
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <React.StrictMode>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </React.StrictMode>
+    );
+
+    This is where your entire React component tree (starting with <App />) is rendered.
+
+No extra boilerplate needed
+    You don’t need to add additional <link> tags for Tailwind, because we import Tailwind’s CSS from src/index.css inside main.jsx.
+    Vite’s dev server will automatically serve this index.html and handle module resolution.
 --> 
+
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!--
+      The `meta` viewport line makes your app responsive on mobile devices.
+    -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Real Estate Finder</title>
+
+    <!--
+      Vite injects the correct scripts/styles at build time. The @vite/client script
+      sets up HMR (hot‐module reloading) when you run `npm run dev`.
+    -->
+    <script type="module" src="/src/main.jsx"></script>
   </head>
   <body>
+    <!--
+      This <div id="root"> is where React will "mount" your application.
+      In `src/main.jsx`, ReactDOM.createRoot(...) targets this element.
+    -->
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

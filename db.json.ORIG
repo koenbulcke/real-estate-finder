@@ -1,0 +1,95 @@
+{
+  "properties": [
+    {
+      "id": 1,
+      "title": "Spacieuse maison familiale à Kirchberg",
+      "location": "Kirchberg, Luxembourg",
+      "price": 1250000,
+      "description": "Située au cœur du quartier dynamique de Kirchberg, cette magnifique maison familiale de 5 chambres offre plus de 300 m² de surface habitable sur trois niveaux. Au rez-de-chaussée, vous trouverez un hall d'entrée avec vestiaire, un lumineux salon avec bow-window, une salle à manger attenante et une cuisine semi-ouverte entièrement équipée avec îlot central. Le premier étage se compose de trois chambres spacieuses, dont une suite parentale avec dressing et salle de bains privative (douche italienne, baignoire et double vasque). Une salle de bains additionnelle complète cet étage.\n\nÀ l'étage supérieur, deux chambres supplémentaires bénéficient d'un accès à une terrasse solarium de 20 m² offrant une vue panoramique sur la vallée de l’Alzette. Le sous-sol aménagé comprend une buanderie, une cave à vin climatisée, un espace détente/bureau et un garage double. Jardinet privatif orienté sud-ouest, parfait pour un petit potager ou espace barbecue. Proximité immédiate des institutions européennes, des écoles internationales et des commodités (commerces, restaurants, transports en commun). Chauffage au sol, triple vitrage, panneaux solaires et domotique pour le contrôle de l’éclairage et du chauffage."
+    },
+    {
+      "id": 2,
+      "title": "Charmant appartement 2 chambres à Belair",
+      "location": "Belair, Luxembourg",
+      "price": 850000,
+      "description": "Dans un immeuble bourgeois entièrement rénové, ce superbe appartement de 110 m² se trouve au deuxième étage avec ascenseur. Il se compose d’un hall d’entrée avec placards intégrés, d’un salon-salle à manger traversant baigné de lumière grâce à ses grandes fenêtres, et d’une cuisine séparée récemment refaite (plans de travail en quartz, électroménager haut de gamme). Deux grandes chambres (12 m² et 14 m²), dont une suite parentale avec salle de douche à l’italienne. Une deuxième salle de bains avec baignoire et lave-linge.\n\nLe parquet en chêne massif d’origine a été soigneusement restauré, et les hauts plafonds apportent une sensation d’espace. Au sous-sol, une cave privative de 6 m² et un emplacement de parking couvert inclus. La localisation est idéale : à cinq minutes à pied du centre-ville, du parc de Merl, et à proximité immédiate de l’École Européenne de Luxembourg. Charges de copropriété raisonnables, syndic référent. Disponible à la vente immédiatement."
+    },
+    {
+      "id": 3,
+      "title": "Magnifique penthouse terrasse à Limpertsberg",
+      "location": "Limpertsberg, Luxembourg",
+      "price": 1450000,
+      "description": "Vous rêvez d’une vie en hauteur avec vue dégagée ? Ce penthouse de 150 m² se niche au cinquième étage d’une résidence moderne à proximité du campus de l’Université du Luxembourg. Il offre un vaste espace ouvert regroupant salon, salle à manger et cuisine américaine tout équipée, le tout donnant accès à une terrasse de 60 m² exposée plein sud. Idéal pour recevoir, planter un jardin urbain ou installer un espace lounge.\n\nLe coin nuit comprend trois chambres dont une suite parentale (salle de bains privative avec double vasque, douche à l’italienne et un grand dressing). Deux autres chambres partagent une seconde salle de bains avec baignoire. Les finitions sont haut de gamme : sols en pierre naturelle, chauffage au sol, stores électriques, système de ventilation double flux. Deux emplacements parking au sous-sol, local à vélos sécurisé et chargeur pour véhicule électrique. À pied, vous rejoignez la ville en 10 minutes, et le tram se trouve à deux pas."
+    },
+    {
+      "id": 4,
+      "title": "Maison moderne jumelée à Gasperich",
+      "location": "Gasperich, Luxembourg",
+      "price": 1150000,
+      "description": "Construction récente (2020), cette maison jumelée de 4 chambres (190 m²) est située dans un quartier résidentiel calme de Gasperich, à quelques minutes du centre-ville. Agencement optimisé : un séjour cathédrale lumineux, une cuisine ouverte avec bar central et cellier attenant, toilettes invités. Au premier étage, trois chambres dont la suite parentale avec dressing et balcon privé, et une salle de bains familiale. Le rez-de-jardin se compose d’une quatrième chambre (ou bureau), d’une salle d’eau avec douche, d’un espace buanderie et d’un garage double. Jardin de 120 m² paysagé, terrasses en bois exotique, système d’arrosage automatique.\n\nMatériaux éco-responsables, isolation renforcée, ballon thermodynamique, panneaux photovoltaïques raccordés au réseau. Très bonne performance énergétique (classe B). Écoles, supermarché, centres sportifs et transport public (Bus 221) à proximité. Parfait pour une famille cherchant la tranquillité tout en restant proche de toutes les commodités."
+    },
+    {
+      "id": 5,
+      "title": "Appartement studio rénové à Bonnevoie",
+      "location": "Bonnevoie, Luxembourg",
+      "price": 320000,
+      "description": "Idéal investisseur ou primo-accédant : ce studio de 35 m², entièrement rénové en 2022, se trouve au troisième étage d’un petit immeuble calme sans ascenseur. Il comprend :\n- Un espace jour ouvert avec coin nuit,\n- Une cuisine équipée sur mesure (plans quartz, tous équipements récents),\n- Une salle de douche carrelée jusqu’au plafond avec meuble vasque et miroir rétroéclairé.\n\nLe logement a conservé son parquet en hêtre massif d’origine, mis en valeur par un mur de briques peint en blanc. Les fenêtres PVC double vitrage apportent une excellente isolation phonique et thermique. Une cuve à eau de pluie alimente un lave-linge écoconçu. Proche de la gare de Luxembourg, du parc des Cèdres, et de nombreux commerces. Faibles charges de copropriété (50 €/mois). Idéal pour location étudiante (7 % brut) ou premier pied à terre."
+    },
+    {
+      "id": 6,
+      "title": "Garage fermé sécurisé à Mersch",
+      "location": "Mersch, Luxembourg",
+      "price": 45000,
+      "description": "Propriété rare : garage individuel de 16 m² (4 m x 4 m) dans un parking souterrain sécurisé de Mersch. Porte sectionnelle motorisée, sol carrelé, prise électrique pour recharge auto ou atelier bricolage. Accès facile 24 h/24 via badge magnétique, vidéosurveillance dans l’ensemble du parking. Idéal pour stocker une petite voiture, des vélos, ou comme espace de rangement supplémentaire pour entrepreneurs locaux. Charges annuelles : 120 € (entretien ascenseur, électricité des parties communes). Localisation centrale à deux pas de la gare ferroviaire, commerces et écoles."
+    },
+    {
+      "id": 7,
+      "title": "Penthouse luxe 3 chambres à Luxembourg-Ville",
+      "location": "Luxembourg-Ville (Rives de Clausen)",
+      "price": 2250000,
+      "description": "Dans la nouvelle résidence “Rives de Clausen”, ce penthouse de 180 m² se situe au dernier étage avec une terrasse panoramique de 80 m². Matériaux nobles : parquet en chêne contrecollé, marbre dans la salle de bains, menuiseries alu-minces.\n- Espace de vie « open plan » de 70 m² : salon, salle à manger et cuisine Bulthaup toute équipée,\n- Suite parentale (dressing, salle de bains spa avec baignoire balnéo et douche à l’italienne),\n- Deux chambres doubles avec rangement intégré,\n- Salle de bains additionnelle avec double vasque et WC séparés.\n\nDomotique complète pour éclairage, chauffage, stores et système audio. Climatisation réversible. Deux emplacements parking au sous-sol, une cave de 8 m², et local à vélos. À pied, vous rejoignez les restaurants et bars branchés de Clausen en 2 minutes, et le centre historique en 10 minutes. Grande luminosité grâce aux baies vitrées du sol au plafond. Disponible immédiatement."
+    },
+    {
+      "id": 8,
+      "title": "Maison coquette 3 chambres à Strassen",
+      "location": "Strassen, Luxembourg",
+      "price": 975000,
+      "description": "Sur un terrain de 4 ares, cette charmante maison maisonette (130 m²) comprend :\n- Au rez-de-chaussée : hall d’entrée, séjour avec cheminée, cuisine ouverte sur la terrasse arrière, et toilettes invités.\n- À l’étage : trois chambres (11 m², 12 m² et 14 m²), dont une suite parentale avec salle de bains privative (double vasque, douche italienne). Une salle de bains supplémentaire avec baignoire complète l’étage.\n- Sous-sol : grand garage pour deux voitures, buanderie, cave à vin, et espace de stockage.\n\nLe jardin exposé sud-est est arboré, avec un coin repas extérieur. Proche des écoles publiques et internationales, des commerces et du centre-ville. Chauffage au sol, panneaux solaires thermiques pour l’eau chaude, triple vitrage. Idéal pour une famille cherchant la quiétude à seulement 7 minutes en voiture de Kirchberg."
+    },
+    {
+      "id": 9,
+      "title": "Appartement loft 1 chambre à Esch-sur-Alzette",
+      "location": "Esch-sur-Alzette, Luxembourg",
+      "price": 525000,
+      "description": "Dans une ancienne usine recyclée, ce loft unique de 75 m² combine authentique et moderne. Grandes verrières métalliques, sol béton ciré et poutres apparentes ; la pièce principale se divise en :\n- Espace salon avec plafond cathédrale de 5 m,\n- Cuisine américaine design équipée avec plan de travail en acier inox,\n- Une mezzanine de 12 m² servant de chambre parentale,\n- Une salle d’eau contemporaine (douche à l’italienne, meuble vasque minimaliste).\n\nL’appartement bénéficie d’une orientation sud-ouest, offrant une excellente luminosité tout au long de la journée. Chauffage par aérothermie, vidéophone, parking souterrain privatif. À deux pas de la gare, des écoles et des cafés branchés d’Esch. Idéal pour un jeune actif ou un couple cherchant un pied-à-terre atypique."
+    },
+    {
+      "id": 10,
+      "title": "Grande villa 6 chambres à Differdange",
+      "location": "Differdange, Luxembourg",
+      "price": 1420000,
+      "description": "Propriété d’exception à Differdange : villa de 320 m² habitables sur un terrain de 7 ares, nichée dans un quartier résidentiel cossu.\nRez-de-chaussée : hall d’entrée avec escalier en bois massif, immense salon double exposition (50 m²) avec bow-window, salle à manger formelle, cuisine séparée (armoires en chêne, plans de travail en granit), et toilettes invités.\nPremier étage : trois suites (20 m², 18 m², 22 m²), chacune avec salle de bains privative (bain + douche).\nDeuxième étage (combles) : deux chambres supplémentaires (13 m² et 15 m²) et un espace bureau/chambre d’appoint, avec vue sur la vallée.\nSous-sol entièrement aménagé : home cinéma, salle de sport, cave à vin, buanderie et double garage.\n\nLe jardin paysagé borde un bassin naturel, agrémenté d’une terrasse en bois et d’un coin barbecue. Chauffage central à condensation, panneaux photovoltaïques, domotique pour pilotage des volets roulants et de l’éclairage extérieur. À proximité immédiate des écoles, du centre commercial et du parc municipal."
+    },
+    {
+      "id": 11,
+      "title": "Appartement 2 chambres rénové à Luxembourg-Gare",
+      "location": "Luxembourg-Gare, Luxembourg",
+      "price": 680000,
+      "description": "Au deuxième étage d’un immeuble Art déco, cet appartement de 90 m² a été refait à neuf en 2023 avec des matériaux haut de gamme.\n• Hall d’entrée avec espace rangement masqué,\n• Salon lumineux (25 m²) donnant sur un balcon de 5 m²,\n• Cuisine ouverte design (plans en Corian, électroménager Siemens),\n• Suite parentale (dressing et salle d’eau avec douche à l’italienne),\n• Deuxième chambre contemporaine (12 m²) pouvant servir de bureau ou chambre d’ami,\n• Salle de bains familiale (baignoire îlot, marbre au mur).\n\nParquet chêne massif, radiateurs design, menuiseries alu-noir, domotique basique (chauffage piloté à distance). Emplacement de parking souterrain inclus. Proche des gares, restaurants, supermarchés, et transports en commun (bus, tram). Parfait pour jeune couple ou investisseur (rendement locatif assuré à 5,5 %)."
+    },
+    {
+      "id": 12,
+      "title": "Garage double sécurisé à Capellen",
+      "location": "Capellen, Luxembourg",
+      "price": 60000,
+      "description": "Rare sur le marché : garage double sécurisé (36 m²) situé dans un nouveau complexe résidentiel à Capellen, construit en 2021.\n• Porte sectionnelle motorisée avec télécommande,\n• Sol revêtu epoxy antidérapant,\n• Prise électrique 220 V pour recharge de véhicule ou outils,\n• Éclairage LED encastré,\n• Système d’alarme relié à la copropriété.\n\nAccès direct par rampe sécurisée, badge magnétique pour l’entrée, vidéosurveillance dans tous les parkings. Situation idéale à 5 minutes à pied de la gare de Mamer, à côté d’un arrêt de bus et d’un Lidl. Faibles charges (entretien des parties communes, électricité), certificat énergétique A+. Idéal pour collectionneur de voitures, artisan ou simple besoin de stockage."
+    },
+    {
+      "title": "KBUTEST",
+      "location": "LUXVILLAGE",
+      "price": 999999,
+      "description": "Beschrijving",
+      "id": 13
+    }
+  ]
+}

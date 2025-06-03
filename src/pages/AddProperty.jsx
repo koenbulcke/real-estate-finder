@@ -1,172 +1,206 @@
 /**
- * AddProperty component
+ * AddProperty.jsx
  *
- * @module AddProperty
- * @description
- * Deze React-component biedt een formulier waarmee gebruikers een nieuw vastgoedobject kunnen toevoegen.
- * Het beheert de formulierstatus, voert validatie uit op de invoervelden en geeft feedback aan de gebruiker.
- * Bij succesvolle toevoeging wordt de gebruiker automatisch doorgestuurd naar de homepage.
+ * Page for adding a new property (route: /add).  
+ * Features:
+ *   1) Controlled form using React useState for each input  
+ *   2) Client-side validation: all fields required, price must be > 0  
+ *   3) On form submit, send POST request to JSON Server  
+ *   4) Show success message and redirect after 1 second  
+ *   5) Show error message on failure  
  *
- * @returns {JSX.Element} Een formulier voor het toevoegen van een nieuw vastgoedobject.
- *
- * @example
- * <AddProperty />
- *
- * @function
- *
- * @property {Object} initialForm - De standaardwaarden voor het formulier, bestaande uit lege velden voor titel, locatie, prijs en beschrijving.
- * @property {Object} formData - De huidige status van de formulierinvoer, beheerd via useState.
- * @property {Function} setFormData - Functie om de formulierstatus bij te werken.
- * @property {boolean} success - Geeft aan of het toevoegen van het vastgoedobject succesvol was.
- * @property {Function} setSuccess - Functie om de successtatus bij te werken.
- * @property {string} error - Bevat een foutmelding als de validatie mislukt.
- * @property {Function} setError - Functie om de foutstatus bij te werken.
- * @property {Function} handleChange - Handler die wordt aangeroepen bij wijziging van een invoerveld; werkt de formulierstatus bij.
- * @property {Function} handleClear - Handler die het formulier en eventuele fout- of succesmeldingen reset.
- * @property {Function} handleSubmit - Handler die het formulier valideert, het vastgoedobject toevoegt via addProperty, feedback geeft en na 1 seconde doorstuurt naar de homepage.
- *
- * @see {@link addProperty} - Servicefunctie die het vastgoedobject toevoegt aan de backend of opslag.
- * @see {@link useNavigate} - React Router hook om te navigeren tussen pagina's.
- *
- * @remarks
- * - Alle velden zijn verplicht; bij ontbrekende invoer wordt een foutmelding getoond.
- * - De prijs moet een getal groter dan nul zijn.
- * - Na succesvolle toevoeging wordt een succesmelding getoond en volgt automatische redirect.
- * - Het formulier is gestyled met Tailwind CSS-klassen.
+ * Uses:
+ *   - useState for formData, error, success  
+ *   - useNavigate to programmatically redirect upon success  
+ *   - Spinner (optional) if desired to show loading during POST  
  */
-import { useState } from 'react'
+
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { addProperty } from '../services/propertyService'
+import Spinner from '../components/Spinner.jsx'
 
 function AddProperty() {
+  // initialForm: default values for the form fields
+  const initialForm = {
+    title: "",
+    location: "",
+    price: "",
+    description: ""
+  }
+  // formData holds current input values
+  const [formData, setFormData] = useState(initialForm)
+  // error holds any validation or server error message
+  const [error, setError] = useState("")
+  // success indicates whether POST succeeded
+  const [success, setSuccess] = useState(false)
+  // loading indicates whether POST is in progress
+  const [loading, setLoading] = useState(false)
+
   const navigate = useNavigate()
 
-  // Default form values
-  const initialForm = {
-    title: '',
-    location: '',
-    price: '',
-    description: ''
-  }
-
-  // State to manage form inputs
-  const [formData, setFormData] = useState(initialForm)
-
-  // State for feedback messages
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState('')
-
-  // Update form data on input change
+  /**
+   * handleChange(e)
+   * ----------------
+   * Updates formData state whenever any input changes.
+   * Uses the input’s name attribute to update the correct field.
+   */
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value
-    })
+    }))
   }
 
-  // Clear form manually
+  /**
+   * handleClear()
+   * -------------
+   * Resets the form fields to initialForm, clears error and success states.
+   */
   const handleClear = () => {
     setFormData(initialForm)
-    setError('')
+    setError("")
     setSuccess(false)
   }
 
-  // Handle form submission
+  /**
+   * handleSubmit(e)
+   * ----------------
+   * Validates inputs, then sends a POST request to JSON Server.
+   * On success, shows a success message and redirects to home after 1s.
+   * On error, displays the error message.
+   */
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // Validate all fields are filled
+    // Destructure for easy checking
     const { title, location, price, description } = formData
+
+    // Client-side validation
     if (!title || !location || !price || !description) {
-      setError('⚠️ All fields are required.')
+      setError("⚠️ All fields are required.")
       setSuccess(false)
       return
     }
-
-    // Validate price is a positive number
     const parsedPrice = parseFloat(price)
     if (isNaN(parsedPrice) || parsedPrice <= 0) {
-      setError('⚠️ Price must be a number greater than 0.')
+      setError("⚠️ Price must be a number greater than 0.")
       setSuccess(false)
       return
     }
 
-    // If everything is valid, add the property
-    addProperty({ ...formData, price: parsedPrice })
-
-    // Show success message and clear errors
-    setSuccess(true)
-    setError('')
-
-    // Redirect to homepage after 1 second
-    setTimeout(() => {
-      navigate('/')
-    }, 1000)
+    // If validation passes, send POST
+    setLoading(true)
+    fetch("http://localhost:8000/properties", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title,
+        location,
+        price: parsedPrice,
+        description
+      })
+    })
+      .then((res) => {
+        setLoading(false)
+        if (!res.ok) {
+          throw new Error("Failed to add property.")
+        }
+        return res.json()
+      })
+      .then((newProperty) => {
+        setError("")
+        setSuccess(true)
+        // Redirect after 1 second
+        setTimeout(() => {
+          navigate("/")
+        }, 1000)
+      })
+      .catch((err) => {
+        setLoading(false)
+        console.error(err)
+        setError(err.message)
+        setSuccess(false)
+      })
   }
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded shadow">
-      <h2 className="text-xl font-bold mb-4">Add New Property</h2>
-
-      {/* Feedback messages */}
-      {error && <p className="mb-4 text-red-600">{error}</p>}
-      {success && (
-        <p className="mb-4 text-green-600 font-semibold">
-          ✅ Property added successfully! Redirecting...
-        </p>
-      )}
-
-      {/* The actual form */}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          value={formData.title}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-        <input
-          type="text"
-          name="location"
-          placeholder="Location"
-          value={formData.location}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-        <input
-          type="number"
-          name="price"
-          placeholder="Price"
-          value={formData.price}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-        <textarea
-          name="description"
-          placeholder="Description"
-          value={formData.description}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        />
-
-        {/* Action buttons */}
-        <div className="flex gap-4">
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >
-            Add Property
-          </button>
-          <button
-            type="button"
-            onClick={handleClear}
-            className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
-          >
-            Clear Form
-          </button>
+    <div className="container mx-auto py-8 px-4">
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-lg mx-auto">
+        {/* Top red banner */}
+        <div className="bg-red-600 p-4">
+          <h2 className="text-2xl font-semibold text-white">
+            Ajouter une propriété
+          </h2>
         </div>
-      </form>
+
+        <div className="p-6 space-y-4">
+          {/* Show server/form error if any */}
+          {error && <p className="text-red-600 font-medium">{error}</p>}
+
+          {/* Show success message when property is added */}
+          {success && (
+            <p className="text-green-600 font-medium">
+              ✅ Property added successfully! Redirecting…
+            </p>
+          )}
+
+          {/* Show spinner if loading POST */}
+          {loading && <Spinner color="#dc2626" size={50} loading={true} />}
+
+          {/* Form fields */}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text"
+              name="title"
+              placeholder="Property Title"
+              value={formData.title}
+              onChange={handleChange}
+              className="w-full border-gray-300 border rounded-lg p-3 focus:ring-2 focus:ring-red-400"
+            />
+            <input
+              type="text"
+              name="location"
+              placeholder="Location (City & Neighborhood)"
+              value={formData.location}
+              onChange={handleChange}
+              className="w-full border-gray-300 border rounded-lg p-3 focus:ring-2 focus:ring-red-400"
+            />
+            <input
+              type="number"
+              name="price"
+              placeholder="Price (€)"
+              value={formData.price}
+              onChange={handleChange}
+              className="w-full border-gray-300 border rounded-lg p-3 focus:ring-2 focus:ring-red-400"
+            />
+            <textarea
+              name="description"
+              placeholder="Detailed Description"
+              value={formData.description}
+              onChange={handleChange}
+              rows={6}
+              className="w-full border-gray-300 border rounded-lg p-3 focus:ring-2 focus:ring-red-400"
+            ></textarea>
+
+            {/* Submit & Clear buttons */}
+            <div className="flex gap-4">
+              <button
+                type="submit"
+                className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
+              >
+                Add Property
+              </button>
+              <button
+                type="button"
+                onClick={handleClear}
+                className="bg-gray-300 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-400 transition-colors"
+              >
+                Clear
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

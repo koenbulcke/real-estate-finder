@@ -1,3 +1,85 @@
+A) Top‐Level Files
+
+    db.json
+    (Fake JSON‐Server data; already shown in section 1.)
+
+    package.json
+    (Scripts + dependencies; shown in section 2.)
+
+    tailwind.config.js
+    (Tailwind setup; shown in section 3.)
+
+    postcss.config.js
+    (PostCSS/Tailwind plugin array; shown in section 4.)
+
+    vite.config.js
+    (Basic Vite config with React plugin; shown in section 5.)
+
+
+B) src/ Folder
+B.1) src/index.css
+
+(See section 6 for contents)
+B.2) src/main.jsx
+
+(See section 7 for contents)
+B.3) src/App.jsx
+
+(See section 2.1 for updated contents)
+C) src/components/
+
+    Layout.jsx
+    (Unchanged from earlier answer; see section 8)
+
+    NavBar.jsx
+    (Updated with About and Contact links; see section 2.2)
+
+    HeroBanner.jsx
+    (Unchanged; see section 11)
+
+    InfoCard.jsx
+    (Unchanged; see section 12)
+
+    InfoSection.jsx
+    (Unchanged; see section 13)
+
+    Spinner.jsx
+    (Unchanged; see section 14)
+
+    PropertyList.jsx
+    (Unchanged; see section 15)
+
+    PropertyListItem.jsx
+    (Unchanged; see section 16)
+
+D) src/pages/
+
+    HomePage.jsx
+    (Unchanged; see section 17)
+
+    PropertiesPage.jsx
+    (Unchanged; see section 18)
+
+    AddProperty.jsx
+    (Unchanged; see section 19)
+
+    EditProperty.jsx
+    (Unchanged; see section 20)
+
+    PropertyDetail.jsx
+    (Unchanged; see section 21)
+
+    About.jsx
+    (New; see section 2.3)
+
+    Contact.jsx
+    (New; see section 2.4)
+
+    NotFoundPage.jsx
+    (Unchanged; see section 22)
+
+
+
 Architecture
 o Composants fonctionnels
 o Au moins 1 composant réutilisable

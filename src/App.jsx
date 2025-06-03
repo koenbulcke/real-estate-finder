@@ -28,30 +28,67 @@ https://tailwindcss.com/docs/installation/using-vite
  * 
 */
 
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import AddProperty from './pages/AddProperty'
-import PropertyDetail from './pages/PropertyDetail'
-import MainLayout from './layouts/MainLayout'
-
-/* This is the root component that sets up routing for the app
- * This App component defines the routes (URLs) for the application.
- * Each Route loads a different "page" component.
+/**
+ * App.jsx
+ *
+ * Central route configuration using React Router v6.
+ * We have a Layout component at the root, which renders NavBar + <Outlet>.
+ *
+ * We are now adding two new pages:
+ *   - /about    → About page
+ *   - /contact  → Contact page
+ *
+ * The route tree is:
+ *   /              → HomePage
+ *   /properties    → PropertiesPage
+ *   /add           → AddProperty
+ *   /edit/:id      → EditProperty
+ *   /property/:id  → PropertyDetail
+ *   /about         → About
+ *   /contact       → Contact
+ *   *              → NotFoundPage
+ * 
+ * 
+ *  two new routes under our existing <Routes> so that /about and /contact render the new pages. 
+ *
+ * 
+ * 
+ * 
  */
+
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+
+import Layout from './components/Layout.jsx'
+import HomePage from './pages/HomePage.jsx'
+import PropertiesPage from './pages/PropertiesPage.jsx'
+import AddProperty from './pages/AddProperty.jsx'
+import EditProperty from './pages/EditProperty.jsx'
+import PropertyDetail from './pages/PropertyDetail.jsx'
+import About from './pages/About.jsx'          // Newly imported
+import Contact from './pages/Contact.jsx'      // Newly imported
+import NotFoundPage from './pages/NotFoundPage.jsx'
+
 function App() {
   return (
-    <MainLayout>
-      <Routes>
-        {/* The home page shows all properties */}
-        <Route path="/" element={<Home />} />
-        
-        {/* This page has a form to add a property */}
-        <Route path="/add" element={<AddProperty />} />
-        
-        {/* This page shows the detail of a specific property by ID */}
-        <Route path="/property/:id" element={<PropertyDetail />} />
-      </Routes>
-    </MainLayout>
+    <Routes>
+      {/* Root path uses Layout for all nested routes */}
+      <Route path="/" element={<Layout />}>
+        {/* Index route = "/" → HomePage */}
+        <Route index element={<HomePage />} />
+        <Route path="properties" element={<PropertiesPage />} />
+        <Route path="add" element={<AddProperty />} />
+        <Route path="edit/:id" element={<EditProperty />} />
+        <Route path="property/:id" element={<PropertyDetail />} />
+
+        {/* New “About” and “Contact” routes */}
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+
+        {/* Catch-all for any unmatched route */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   )
 }
 

@@ -8,16 +8,23 @@ Le point d'entrée de l'application. C'est ici que React est rendu dans le DOM.
  * and renders the application into the root DOM element. It also applies global styles from index.css.
  */
 
+/**
+ * main.jsx
+ *
+ * Entry point of the React application.  
+ * - Imports React, ReactDOM, BrowserRouter, and App.  
+ * - Imports index.css for Tailwind.  
+ * - Renders <App> wrapped in <BrowserRouter> for routing support.
+ */
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom' // This enables page navigation
+import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
-import './index.css' // Tailwind styles
+import './index.css'  // Import Tailwind CSS
 
-// This renders our React app inside the <div id="root"> in index.html
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* Enable routing between pages */}
     <BrowserRouter>
       <App />
     </BrowserRouter>
