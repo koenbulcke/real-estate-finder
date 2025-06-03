@@ -1,0 +1,130 @@
+Architecture
+o Composants fonctionnels
+o Au moins 1 composant réutilisable
+o Architecture propre et hiérarchie bien définie
+-------------
+
+Composants fonctionnels (Functional Components)
+==> project uses modern functional components:
+ * App.jsx
+ * Home.jsx, AddProperty.jsx, PropertyDetail.jsx
+ * MainLayout.jsx, Header.jsx
+ * PropertyCard.jsx
+
+Functional components are now the standard in React 
+(especially with hooks like useState, useEffect).
+
+Au moins 1 composant réutilisable (At least one reusable component)
+==> reusable component: PropertyCard.jsx
+
+Used to display property listings in Home.jsx, and it could also be reused elsewhere (e.g., Favorites, Search results).
+
+✅ It's modular
+✅ Takes props
+✅ Reused in a loop
+
+
+=======================================================================================================
+✅ 3. Architecture propre et hiérarchie bien définie (Clean architecture and clear hierarchy)
+✔️ Yes, your project follows a very clear and maintainable file structure:
+
+
+real-estate-finder/
+├── public/                 → HTML root
+├── src/                   
+│   ├── components/         → Reusable UI blocks (like cards, header)
+│   ├── layouts/            → Layouts wrapping pages (MainLayout)
+│   ├── pages/              → Individual route-based views
+│   ├── services/           → Logic (simulated API/data layer)
+│   ├── App.jsx             → Route config
+│   └── main.jsx            → Entry point
+
+✅ Pages are separated
+✅ Logic is not mixed with UI
+✅ Components are decoupled
+✅ Clean hierarchy
+
+=======================================================================================================
+
+1. ✅ Utilisation de useState pour la gestion d'état local
+✔️ Yes, your project uses useState correctly for managing local state.
+
+Examples:
+
+In Home.jsx:
+
+const [properties, setProperties] = useState([]);
+You use this to store and render the list of properties.
+
+In AddProperty.jsx:
+
+const [formData, setFormData] = useState({
+  title: '',
+  location: '',
+  price: '',
+  description: ''
+});
+This is used to track form input values.
+
+=======================================================================================================
+
+2. ✅ Utilisation de useEffect au moins une fois
+✔️ Yes, you use useEffect in Home.jsx to load data when the page mounts:
+
+In Home.jsx:
+jsx
+Copy
+Edit
+useEffect(() => {
+  setProperties(getProperties());
+}, []);
+
+✅ You are using useEffect:
+
+For initial data loading
+
+Correctly with an empty dependency array ([]) to run once
+
+=======================================================================================================
+
+
+✅ Your Project Includes:
+React Router:
+You correctly installed and used it:
+
+npm install react-router-dom
+Defined Routes in App.jsx:
+
+
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/add" element={<AddProperty />} />
+  <Route path="/property/:id" element={<PropertyDetail />} />
+</Routes>
+✅ 3+ routes
+✅ Detail page uses a dynamic :id segment
+
+Working Navigation in Header.jsx:
+
+jsx
+Copy
+Edit
+<Link to="/">Home</Link>
+<Link to="/add">Add Property</Link>
+🧭 Navigation Works?
+✅ Users can:
+
+Browse to Home
+
+Add a property
+
+Click a property → View details
+
+✅ useParams() used correctly in PropertyDetail.jsx:
+
+jsx
+Copy
+Edit
+const { id } = useParams();
+✅ Dynamic routing is functioning.
+
