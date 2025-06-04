@@ -16,33 +16,40 @@
  *   - Spinner to show loading  
  */
 
+/**
+ * PropertyDetail.jsx
+ *
+ * Page to display details of a single property (route: /property/:id).  
+ * Features:
+ *   1) Fetch the property by ID via GET  
+ *   2) Show a spinner while loading and error if fetch fails  
+ *   3) Display title, location, price, full description  
+ *   4) Provide a “Delete Property” button (DELETE request)  
+ *   5) After deletion, redirect to /properties  
+ *
+ * Uses:
+ *   - useParams to read property ID from URL  
+ *   - useEffect & useState for fetch lifecycle  
+ *   - useNavigate to redirect after delete  
+ *   - Spinner to show loading  
+ */
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Spinner from '../components/Spinner.jsx'
 
 function PropertyDetail() {
-  // Extract ID from URL
   const { id } = useParams()
   const navigate = useNavigate()
-
-  // State for property object
   const [property, setProperty] = useState(null)
-  // loading while GET is in progress
   const [loading, setLoading] = useState(true)
-  // error message if GET or DELETE fails
   const [error, setError] = useState(null)
-  // deleting state when DELETE is in progress
   const [deleting, setDeleting] = useState(false)
 
   useEffect(() => {
     fetch(`http://localhost:8000/properties/${id}`)
       .then((res) => {
-        if (res.status === 404) {
-          throw new Error("Property not found")
-        }
-        if (!res.ok) {
-          throw new Error("Error loading property details")
-        }
+        if (res.status === 404) throw new Error("Property not found")
+        if (!res.ok) throw new Error("Error loading property")
         return res.json()
       })
       .then((data) => {
@@ -56,24 +63,13 @@ function PropertyDetail() {
       })
   }, [id])
 
-  /**
-   * handleDelete()
-   * --------------
-   * Sends a DELETE request to remove the property.  
-   * On success, redirect to /properties.  
-   * On error, display error message.
-   */
   const handleDelete = () => {
     if (confirm("Are you sure you want to delete this property?")) {
       setDeleting(true)
-      fetch(`http://localhost:8000/properties/${id}`, {
-        method: "DELETE"
-      })
+      fetch(`http://localhost:8000/properties/${id}`, { method: "DELETE" })
         .then((res) => {
           setDeleting(false)
-          if (!res.ok) {
-            throw new Error("Failed to delete property")
-          }
+          if (!res.ok) throw new Error("Failed to delete property")
           navigate("/properties")
         })
         .catch((err) => {
@@ -84,7 +80,6 @@ function PropertyDetail() {
     }
   }
 
-  // Show spinner while initial GET is loading
   if (loading) {
     return (
       <div className="container mx-auto py-8 px-4 text-center">
@@ -94,7 +89,6 @@ function PropertyDetail() {
     )
   }
 
-  // Show error if fetch fails
   if (error && !deleting) {
     return (
       <div className="container mx-auto py-8 px-4">
@@ -103,7 +97,6 @@ function PropertyDetail() {
     )
   }
 
-  // If property was not found
   if (!property) {
     return (
       <div className="container mx-auto py-8 px-4">
@@ -115,27 +108,26 @@ function PropertyDetail() {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-        {/* Header bar with title */}
+        {/* Header */}
         <div className="bg-red-600 p-4">
           <h2 className="text-2xl font-semibold text-white">
             {property.title}
           </h2>
         </div>
-
-        {/* Body with all details */}
+        {/* Body */}
         <div className="p-6 space-y-4">
           <p className="text-gray-700">
             <span className="font-semibold">📍 Location:</span> {property.location}
           </p>
           <p className="text-red-600 font-bold">
-            <span className="font-semibold">💰 Price:</span> €{Number(property.price).toLocaleString()}
+            <span className="font-semibold">💰 Price:</span> €
+            {Number(property.price).toLocaleString()}
           </p>
           <div>
             <span className="font-semibold">📝 Description:</span>
             <p className="mt-2 text-gray-600">{property.description}</p>
           </div>
         </div>
-
         {/* Footer with Delete button */}
         <div className="bg-gray-50 p-6 flex justify-end">
           <button
@@ -151,4 +143,5 @@ function PropertyDetail() {
   )
 }
 
+// Add this line at the very end:
 export default PropertyDetail

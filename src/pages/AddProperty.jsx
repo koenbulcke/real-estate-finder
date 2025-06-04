@@ -69,7 +69,21 @@ function AddProperty() {
    * On success, shows a success message and redirects to home after 1s.
    * On error, displays the error message.
    */
-  const handleSubmit = (e) => {
+
+  // Javascript arrow function equivalent: 
+  //const handleSubmit = (e) => {
+  /**
+   * Handelt het indienen van het formulier af voor het toevoegen van een nieuwe woning.
+   *
+   * Voert client-side validatie uit op de invoervelden (titel, locatie, prijs, beschrijving).
+   * Geeft een foutmelding als velden ontbreken of als de prijs ongeldig is.
+   * Stuurt bij geldige invoer een POST-verzoek naar de backend om de woning toe te voegen.
+   * Zet een loading-status tijdens het verzoek en toont succes- of foutmeldingen.
+   * Navigeert na succesvol toevoegen automatisch terug naar de homepage.
+   *
+   * @param {React.FormEvent<HTMLFormElement>} e - Het submit-event van het formulier.
+   */
+  function handleSubmit(e) {
     e.preventDefault()
 
     // Destructure for easy checking
@@ -93,6 +107,11 @@ function AddProperty() {
     fetch("http://localhost:8000/properties", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      /*
+       * De JSON.stringify functie in JavaScript zet een JavaScript-object om naar een JSON-string.
+       * Nodig als je data wilt versturen via bijvoorbeeld fetch of XMLHttpRequest.
+       * JSON is een tekstformaat dat makkelijk uitgewisseld kan worden tussen server en client.
+       */ 
       body: JSON.stringify({
         title,
         location,
@@ -101,6 +120,7 @@ function AddProperty() {
       })
     })
       .then((res) => {
+        // Zet loading weer uit zodra er een response is ontvangen
         setLoading(false)
         if (!res.ok) {
           throw new Error("Failed to add property.")
@@ -110,7 +130,7 @@ function AddProperty() {
       .then((newProperty) => {
         setError("")
         setSuccess(true)
-        // Redirect after 1 second
+        // Redirect na 1 seconde
         setTimeout(() => {
           navigate("/")
         }, 1000)
@@ -169,8 +189,7 @@ function AddProperty() {
               type="number"
               name="price"
               placeholder="Price (€)"
-              value={formData.price}
-              onChange={handleChange}
+              min="0"                  /* <=== KBU: This prevents the spinner going below 0*/
               className="w-full border-gray-300 border rounded-lg p-3 focus:ring-2 focus:ring-red-400"
             />
             <textarea

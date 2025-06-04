@@ -1,11 +1,11 @@
 /**
- * PostCSS configuration file for the project.
+ * PostCSS configuratiebestand voor het project.
  * 
- * This file exports a configuration object specifying the PostCSS plugins to use.
- * - '@tailwindcss/postcss': Integrates Tailwind CSS with PostCSS for utility-first CSS generation.
- * - 'autoprefixer': Automatically adds vendor prefixes to CSS rules for better browser compatibility.
+ * Dit bestand exporteert een configuratieobject dat de te gebruiken PostCSS-plugins specificeert.
+ * - '@tailwindcss/postcss': Integreert Tailwind CSS met PostCSS voor utility-first CSS generatie.
+ * - 'autoprefixer': Voegt automatisch vendor prefixes toe aan CSS-regels voor betere browsercompatibiliteit.
  * 
- * Typically used in modern frontend build setups to process and transform CSS files.
+ * Wordt meestal gebruikt in moderne frontend build setups om CSS-bestanden te verwerken en te transformeren.
  */
 export default {
   plugins: {

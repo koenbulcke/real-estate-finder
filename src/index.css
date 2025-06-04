@@ -1,13 +1,10 @@
 /* 
-src/index.css
-Les styles globaux de l'application.
-Custom CSS if needed 
-*/
-/* 
-  index.css
-
-  1) Import Tailwind “base”, “components”, “utilities”.  
-  2) Add global styles for <body> (light gray background, default fonts).
+ * src/index.css
+ * Les styles globaux de l'application.
+ * 3 options pour définir le style d’une application:
+ * * 1) En utilisant des fichiers CSS
+ * * 2) En utilisant des inline styles
+ * * 3) En utilisant par exemple Tailwind CSS ou Bootstrap
 */
 
 
@@ -17,9 +14,9 @@ Custom CSS if needed
 
 /* Global body styling */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f3f4f6; /* Tailwind gray-100 */
-  color: #1f2937;            /* Tailwind gray-800 */
-  margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;           /* Use Arial or sans-serif as the default font */
+  background-color: #f3f4f6; /* Tailwind gray-100: light gray background */
+  color: #1f2937;            /* Tailwind gray-800: dark gray text color */
+  margin: 0;                 /* Remove default margin */
+  padding: 0;                /* Remove default padding */
 }

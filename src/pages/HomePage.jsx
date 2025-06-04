@@ -27,6 +27,28 @@ function HomePage() {
   // All properties fetched from the API
   const [properties, setProperties] = useState([])
   // Loading state (true while fetch is in progress)
+  /*
+Een React Hook is een speciale functie die je in functionele componenten 
+van React gebruikt om extra functionaliteit toe te voegen, 
+zoals het beheren van state (gegevens die kunnen veranderen), 
+het uitvoeren van side effects (zoals data ophalen), of het delen van logica tussen componenten.
+
+Voorbeelden van veelgebruikte hooks:
+ * useState — Hiermee kun je lokale state toevoegen aan een functioneel component.
+ * useEffect — Hiermee kun je side effects uitvoeren, zoals data ophalen of een event listener toevoegen.
+ * useContext — Hiermee kun je context (globale data) gebruiken in je component.
+
+  useState
+  ------------------
+    is een React Hook waarmee je lokale state (gegevens die kunnen veranderen)
+    in een functioneel component kunt beheren.
+    Hoe werkt het?
+    Je roept useState aan met een beginwaarde, bijvoorbeeld useState(null) of useState([]).
+    Het geeft een array terug met twee elementen:
+    De huidige waarde van de state.
+    Een functie om die waarde aan te passen.
+  *
+  */
   const [loading, setLoading] = useState(true)
   // Error message, if any fetch error occurs
   const [error, setError] = useState(null)

@@ -85,11 +85,11 @@
       "description": "Rare sur le marché : garage double sécurisé (36 m²) situé dans un nouveau complexe résidentiel à Capellen, construit en 2021.\n• Porte sectionnelle motorisée avec télécommande,\n• Sol revêtu epoxy antidérapant,\n• Prise électrique 220 V pour recharge de véhicule ou outils,\n• Éclairage LED encastré,\n• Système d’alarme relié à la copropriété.\n\nAccès direct par rampe sécurisée, badge magnétique pour l’entrée, vidéosurveillance dans tous les parkings. Situation idéale à 5 minutes à pied de la gare de Mamer, à côté d’un arrêt de bus et d’un Lidl. Faibles charges (entretien des parties communes, électricité), certificat énergétique A+. Idéal pour collectionneur de voitures, artisan ou simple besoin de stockage."
     },
     {
-      "title": "KBUTEST",
-      "location": "LUXVILLAGE",
-      "price": 999999,
-      "description": "Beschrijving",
-      "id": 13
+      "title": "KBUTST2",
+      "location": "Luxland2",
+      "price": 66.66,
+      "description": "Beschrijving van het vastgoed.",
+      "id": 14
     }
   ]
 }

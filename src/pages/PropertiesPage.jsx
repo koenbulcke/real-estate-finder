@@ -69,7 +69,7 @@ function PropertiesPage() {
   }
 
   return (
-    <PropertyList title="Toutes les annonces">
+    <PropertyList title="All Listings">
       {properties.map((property) => (
         <PropertyListItem key={property.id} property={property} />
       ))}
