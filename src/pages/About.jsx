@@ -1,18 +1,18 @@
 /**
  * About.jsx
  *
- * A simple “About” page for the Real Estate Finder application.
- * Provides some invented company/person information.
+ * Een eenvoudige “Over ons”-pagina voor de Real Estate Finder applicatie.
+ * Bevat verzonnen informatie over het bedrijf/de personen.
  *
- * Features:
- *   - H1: “About Real Estate Finder”
- *   - Paragraphs describing mission, background, etc.
- *   - A small “team” section with made-up names or roles
+ * Kenmerken:
+ *   - H1: “Over Real Estate Finder”
+ *   - Paragrafen die missie, achtergrond, enz. beschrijven
+ *   - Een klein “team”-gedeelte met verzonnen namen of rollen
  *
- * Tailwind styling:
- *   - Container centered
- *   - Rounded card style for content area
- *   - Consistent red header bar
+ * Tailwind-styling:
+ *   - Container gecentreerd
+ *   - Afgeronde kaartstijl voor het inhoudsgebied
+ *   - Consistente rode headerbalk
  */
 
 import React from 'react'

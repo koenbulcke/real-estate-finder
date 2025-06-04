@@ -1,17 +1,17 @@
 /**
  * NavBar.jsx
  *
- * Site-wide navigation bar in a red background.
- * Uses React Router’s NavLink to highlight the active link.
+ * Site-brede navigatiebalk met een rode achtergrond.
+ * Gebruikt React Router’s NavLink om de actieve link te markeren.
  *
- * We have extended it to include:
+ * We hebben deze uitgebreid met:
  *   • Accueil (/)
  *   • Annonces (/properties)
  *   • Ajouter (/add)
- *   • About (/about)      ← NEW LINK
- *   • Contact (/contact)  ← NEW LINK
+ *   • Over (/about)      
+ *   • Contact (/contact) 
  *
- * The “active” link has bg-black and white text; others stay red with hover effect.
+ * De “actieve” link heeft bg-black en witte tekst; de andere blijven rood met een hover-effect.
  */
 
 import React from 'react'
@@ -67,7 +67,7 @@ function NavBar() {
             Ajouter
           </NavLink>
 
-          {/* NEW: About link */}
+          {/* NIEUW: About link */}
           <NavLink
             to="/about"
             className={({ isActive }) =>

@@ -1,57 +1,22 @@
 // src/App.jsx
-//Le composant principal de l'application, qui sert de conteneur pour les autres composants.
+/* Le composant principal de l'application, qui sert de conteneur pour les autres composants.
+ *
+- Located in src/App.jsx. Defines the top-level routing using React Router v6.
+- Imports Layout component and all page components:
+ (HomePage, PropertiesPage, AddProperty, EditProperty, PropertyDetail, About, Contact, NotFoundPage).
+- Uses <Routes> and nested <Route> to attach Layout to the path "/" and then defines child routes:
+- index ("/") renders <HomePage />.
+- "/properties" renders <PropertiesPage />.
+- "/add" renders <AddProperty />.
+- "/edit/:id" renders <EditProperty /> (id param used to fetch specific property).
+- "/property/:id" renders <PropertyDetail />.
+- "/about" renders <About />.
+- "/contact" renders <Contact />.
+- "*" matches any other route and renders <NotFoundPage />.
+ * 
+ * Two new routes under our existing <Routes> so that /about and /contact render the new pages. 
+ *
 
-/**
- * 
- * Différentes fonctionnalités:
-•installation et utilisation de Tailwind CSS
-•composants
-•props
-•gestion des états
-•routing et paramètres
-•retours JSON
-•formulaires
-•fonctionnalités CRUD
-•consommer des API
-•entre autres…
-
-Suivez les différentes étapes ici:
-https://tailwindcss.com/docs/installation/using-vite
- * 
- * npm install installs installs everything listed in your package.json file: 
- * react
- * react-router-dom
- * vite
- * tailwindcss, etc.
- * 
- * 
- * 
-*/
-
-/**
- * App.jsx
- *
- * Central route configuration using React Router v6.
- * We have a Layout component at the root, which renders NavBar + <Outlet>.
- *
- * We are now adding two new pages:
- *   - /about    → About page
- *   - /contact  → Contact page
- *
- * The route tree is:
- *   /              → HomePage
- *   /properties    → PropertiesPage
- *   /add           → AddProperty
- *   /edit/:id      → EditProperty
- *   /property/:id  → PropertyDetail
- *   /about         → About
- *   /contact       → Contact
- *   *              → NotFoundPage
- * 
- * 
- *  two new routes under our existing <Routes> so that /about and /contact render the new pages. 
- *
- * 
  * 
  * 
  */
@@ -65,16 +30,23 @@ import PropertiesPage from './pages/PropertiesPage.jsx'
 import AddProperty from './pages/AddProperty.jsx'
 import EditProperty from './pages/EditProperty.jsx'
 import PropertyDetail from './pages/PropertyDetail.jsx'
-import About from './pages/About.jsx'          // Newly imported
-import Contact from './pages/Contact.jsx'      // Newly imported
+import About from './pages/About.jsx'          
+import Contact from './pages/Contact.jsx'     
 import NotFoundPage from './pages/NotFoundPage.jsx'
 
 function App() {
   return (
     <Routes>
-      {/* Root path uses Layout for all nested routes */}
+      {
+      /* Root path uses Layout for all nested routes 
+      The first <Route> has a path of / and renders the Layout component.
+      */
+      }
       <Route path="/" element={<Layout />}>
-        {/* Index route = "/" → HomePage */}
+        {/* Index route = "/" → HomePage 
+         The HomePage component route does not have a path but has an index attribute. 
+         That specifies this route as the default route for the parent route, which is /.
+        */}
         <Route index element={<HomePage />} />
         <Route path="properties" element={<PropertiesPage />} />
         <Route path="add" element={<AddProperty />} />
@@ -85,7 +57,8 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
 
-        {/* Catch-all for any unmatched route */}
+        {/* Catch-all for any unmatched route -
+        "*" matches any other route and renders <NotFoundPage />.*/}
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

@@ -17,13 +17,23 @@
  *   - bgColor defaults to "bg-gray-100" if not provided.
  */
 
+
+/**
+ * InfoCard.jsx
+ *
+ * Reusable card wrapper. 
+ * - props.bgColor: Tailwind CSS background class (e.g. "bg-gray-100" or "bg-red-100").
+ * - props.children: any nested JSX content to display inside the card.
+ */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function InfoCard({ bgColor, children }) {
+function InfoCard(props) {
   return (
-    <div className={`${bgColor} rounded-lg shadow-md p-6`}>
-      {children}
+    <div className={`${props.bgColor} rounded-lg shadow-md p-6`}>
+      {/* Render whatever was passed between <InfoCard>…</InfoCard> */}
+      {props.children}
     </div>
   )
 }

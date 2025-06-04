@@ -2,54 +2,34 @@
 Le fichier HTML principal. Vite utilise ce fichier comme point d'entrée pour l'application. Il contient une balise
 <div id="root"></div> où React rendra l'application. (Application SPA)
 
-How it works
+ * Purpose: Single HTML file for Vite + React.
+ * Contains a <div id="root"></div> where the React app will mount.
+ * The <script type="module" src="/src/main.jsx"></script> tells Vite to load main.jsx as an ES module.
 
-    <script type="module" src="/src/main.jsx"></script>
-
-        Vite replaces this import at dev‐time with a special WebSocket‐based loader for HMR (hot‐module reloading).
-
-        At build‐time (npm run build), Vite bundles and injects the final main.js (compiled React code) in its place.
-
-    <div id="root"></div>
-
-        In src/main.jsx, you saw:
-
-    ReactDOM.createRoot(document.getElementById('root')).render(
-      <React.StrictMode>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </React.StrictMode>
-    );
-
-    This is where your entire React component tree (starting with <App />) is rendered.
-
-No extra boilerplate needed
-    You don’t need to add additional <link> tags for Tailwind, because we import Tailwind’s CSS from src/index.css inside main.jsx.
-    Vite’s dev server will automatically serve this index.html and handle module resolution.
+Vite’s dev server will automatically serve this index.html and handle module resolution.
 --> 
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <!--
-      The `meta` viewport line makes your app responsive on mobile devices.
+      De `meta` viewport-regel zorgt ervoor dat je app responsief is op mobiele apparaten.
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Real Estate Finder</title>
 
     <!--
-      Vite injects the correct scripts/styles at build time. The @vite/client script
-      sets up HMR (hot‐module reloading) when you run `npm run dev`.
+      Vite vervangt deze import tijdens development door een speciale WebSocket-loader voor HMR (hot-module reloading).
+      Vite injecteert de juiste scripts/styles tijdens build. Het @vite/client script.
+      Vite bundelt en injecteert het uiteindelijke main.js (gecompileerde React code) tijdens build (npm run build).
+      Vite zet HMR (hot-module reloading) op wanneer je `npm run dev` uitvoert.
     -->
     <script type="module" src="/src/main.jsx"></script>
   </head>
   <body>
     <!--
-      This <div id="root"> is where React will "mount" your application.
-      In `src/main.jsx`, ReactDOM.createRoot(...) targets this element.
+      Deze <div id="root"> is waar React je applicatie "mount".
+      In `src/main.jsx` target ReactDOM.createRoot(...) dit element.
     -->
     <div id="root"></div>
   </body>

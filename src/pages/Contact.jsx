@@ -1,21 +1,13 @@
 /**
  * Contact.jsx
  *
- * A simple “Contact” page for Real Estate Finder.
- * Contains the main contact person (Koen Bulcke) with email and phone.
- *
- * Features:
- *   - H1: “Contact Us”
- *   - Paragraph describing how to reach out
- *   - A small “Contact Details” box with:
- *       • Name: Koen Bulcke
- *       • Email: koen.bulcke@gmail.com
- *       • Phone: +32 472 39 80 90
+ * Een eenvoudige “Contact” pagina voor Real Estate Finder.
+ * Bevat de hoofdcontactpersoon (Koen Bulcke) met e-mail en telefoon.
  *
  * Tailwind styling:
- *   - Container centered
- *   - Red header bar
- *   - White card with shadow for content
+ *   - Container gecentreerd
+ *   - Rode headerbalk
+ *   - Witte kaart met schaduw voor de inhoud
  */
 
 import React from 'react'

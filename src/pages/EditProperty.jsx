@@ -25,6 +25,7 @@ import Spinner from '../components/Spinner.jsx'
 
 function EditProperty() {
   // Extract property ID from route params
+  // useParams extracts the property ID from the URL (e.g., /edit/:id)
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -239,6 +240,7 @@ function EditProperty() {
               placeholder="Price (€)"
               value={formData.price}
               onChange={handleChange}
+              min="0"                  /* <=== KBU: This prevents the spinner going below 0*/
               className="w-full border-gray-300 border rounded-lg p-3 focus:ring-2 focus:ring-red-400"
             />
             <textarea

@@ -1,26 +1,25 @@
 /**
  * InfoSection.jsx
  *
- * Renders two “InfoCard” components side-by-side (on md+ screens) or stacked (on mobile).  
- * Each InfoCard uses `bgColor` and passes its inner content via `children`.  
+ * Toont twee “InfoCard”-componenten naast elkaar (op md+ schermen) of gestapeld (op mobiel).
+ * Elke InfoCard gebruikt `bgColor` en geeft zijn inhoud door via `children`.
  *
- * Card 1: “Pour les acheteurs”  
- *   - Light gray background: "bg-gray-100"  
- *   - Title: “Pour les acheteurs”  
- *   - Text: “Découvrez les meilleures annonces immobilières…”  
- *   - Button: “Parcourir les propriétés” linking to "/properties"  
+ * Kaart 1: “Voor kopers”
+ *   - Lichtgrijze achtergrond: "bg-gray-100"
+ *   - Titel: “Voor kopers”
+ *   - Tekst: “Ontdek de beste vastgoedadvertenties…”
+ *   - Knop: “Bekijk woningen” linkt naar "/properties"
  *
- * Card 2: “Pour les vendeurs”  
- *   - Light red background: "bg-red-100"  
- *   - Title: “Pour les vendeurs”  
- *   - Text: “Publiez votre annonce…”  
- *   - Button: “Ajouter une propriété” linking to "/add"  
+ * Kaart 2: “Voor verkopers”
+ *   - Lichtrode achtergrond: "bg-red-100"
+ *   - Titel: “Voor verkopers”
+ *   - Tekst: “Plaats uw advertentie…”
+ *   - Knop: “Voeg een woning toe” linkt naar "/add"
  *
- * Uses Tailwind grid:  
- *   • grid gap-6 md:grid-cols-2  
- *   • Adds padding via container mx-auto py-8 px-4  
+ * Gebruikt Tailwind grid:
+ *   • grid gap-6 md:grid-cols-2
+ *   • Voegt padding toe via container mx-auto py-8 px-4
  */
-
 import React from 'react'
 import InfoCard from './InfoCard.jsx'
 import { Link } from 'react-router-dom'
