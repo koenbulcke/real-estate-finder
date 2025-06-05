@@ -1,227 +1,205 @@
+// src/pages/AddProperty.jsx
+
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner.jsx";
+
 /**
  * AddProperty.jsx
  *
- * Page for adding a new property (route: /add).  
- * Features:
- *   1) Controlled form using React useState for each input  
- *   2) Client-side validation: all fields required, price must be > 0  
- *   3) On form submit, send POST request to JSON Server  
- *   4) Show success message and redirect after 1 second  
- *   5) Show error message on failure  
- *
- * Uses:
- *   - useState for formData, error, success  
- *   - useNavigate to programmatically redirect upon success  
- *   - Spinner (optional) if desired to show loading during POST  
+ * Deze pagina laat de gebruiker toe om een nieuwe eigendom toe te voegen
+ * aan de JSON-Server backend. 
+ * Gebruik van:
+ *  • useState voor formulier-invulvelden (title, location, price, description), 
+ *    plus loading-, error- en success-vlaggen.
+ *  • Een onSubmit handler om te valideren en te POST’en naar /properties.
+ *  • Controlled inputs: elke <input> en <textarea> schrijft naar state via onChange,
+ *    zodat de validatie steeds de actuele waarden ziet.
  */
 
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Spinner from '../components/Spinner.jsx'
-
 function AddProperty() {
-  // initialForm: default values for the form fields
-  const initialForm = {
-    title: "",
-    location: "",
-    price: "",
-    description: ""
-  }
-  // formData holds current input values
-  const [formData, setFormData] = useState(initialForm)
-  // error holds any validation or server error message
-  const [error, setError] = useState("")
-  // success indicates whether POST succeeded
-  const [success, setSuccess] = useState(false)
-  // loading indicates whether POST is in progress
-  const [loading, setLoading] = useState(false)
+  // 1) Lokale state voor elk formulier-veld en UI-vlaggen
+  const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
+  const [price, setPrice] = useState("");         // Als string bewaard, later omzetten naar number
+  const [description, setDescription] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  /**
-   * handleChange(e)
-   * ----------------
-   * Updates formData state whenever any input changes.
-   * Uses the input’s name attribute to update the correct field.
-   */
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
-  }
+  // 2) Handler voor formulier-submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  /**
-   * handleClear()
-   * -------------
-   * Resets the form fields to initialForm, clears error and success states.
-   */
-  const handleClear = () => {
-    setFormData(initialForm)
-    setError("")
-    setSuccess(false)
-  }
-
-  /**
-   * handleSubmit(e)
-   * ----------------
-   * Validates inputs, then sends a POST request to JSON Server.
-   * On success, shows a success message and redirects to home after 1s.
-   * On error, displays the error message.
-   */
-
-  // Javascript arrow function equivalent: 
-  //const handleSubmit = (e) => {
-  /**
-   * Handelt het indienen van het formulier af voor het toevoegen van een nieuwe woning.
-   *
-   * Voert client-side validatie uit op de invoervelden (titel, locatie, prijs, beschrijving).
-   * Geeft een foutmelding als velden ontbreken of als de prijs ongeldig is.
-   * Stuurt bij geldige invoer een POST-verzoek naar de backend om de woning toe te voegen.
-   * Zet een loading-status tijdens het verzoek en toont succes- of foutmeldingen.
-   * Navigeert na succesvol toevoegen automatisch terug naar de homepage.
-   *
-   * @param {React.FormEvent<HTMLFormElement>} e - Het submit-event van het formulier.
-   */
-  function handleSubmit(e) {
-    e.preventDefault()
-
-    // Destructure for easy checking
-    const { title, location, price, description } = formData
-
-    // Client-side validation
-    if (!title || !location || !price || !description) {
-      setError("⚠️ All fields are required.")
-      setSuccess(false)
-      return
-    }
-    const parsedPrice = parseFloat(price)
-    if (isNaN(parsedPrice) || parsedPrice <= 0) {
-      setError("⚠️ Price must be a number greater than 0.")
-      setSuccess(false)
-      return
+    // --- Validatie: controleer dat geen enkel veld leeg is (na trimmen) ---
+    if (
+      title.trim() === "" ||
+      location.trim() === "" ||
+      price.trim() === "" ||
+      description.trim() === ""
+    ) {
+      setError("⚠️ Alle velden zijn verplicht.");
+      return;
     }
 
-    // If validation passes, send POST
-    setLoading(true)
-    fetch("http://localhost:8000/properties", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      /*
-       * De JSON.stringify functie in JavaScript zet een JavaScript-object om naar een JSON-string.
-       * Nodig als je data wilt versturen via bijvoorbeeld fetch of XMLHttpRequest.
-       * JSON is een tekstformaat dat makkelijk uitgewisseld kan worden tussen server en client.
-       */ 
-      body: JSON.stringify({
-        title,
-        location,
-        price: parsedPrice,
-        description
-      })
-    })
-      .then((res) => {
-        // Zet loading weer uit zodra er een response is ontvangen
-        setLoading(false)
-        if (!res.ok) {
-          throw new Error("Failed to add property.")
-        }
-        return res.json()
-      })
-      .then((newProperty) => {
-        setError("")
-        setSuccess(true)
-        // Redirect na 1 seconde
-        setTimeout(() => {
-          navigate("/")
-        }, 1000)
-      })
-      .catch((err) => {
-        setLoading(false)
-        console.error(err)
-        setError(err.message)
-        setSuccess(false)
-      })
-  }
+    // Zet price om naar een nummer en controleer dat het positief is
+    const numericPrice = Number(price);
+    if (isNaN(numericPrice) || numericPrice <= 0) {
+      setError("⚠️ Prijs moet een positief getal zijn.");
+      return;
+    }
+
+    // Wis eventueel vorige foutmelding en toon de spinner
+    setError("");
+    setLoading(true);
+
+    try {
+      // 3) POST naar JSON-Server /properties endpoint
+      const response = await fetch("http://localhost:8000/properties", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: title.trim(),
+          location: location.trim(),
+          price: numericPrice,
+          description: description.trim(),
+        }),
+      });
+
+      if (!response.ok) {
+        // Als server 4xx/5xx terugstuurt, gooi een error
+        throw new Error(`Server reageerde met status ${response.status}`);
+      }
+
+      // Parse JSON om het nieuw aangemaakte object (met id) te krijgen
+      const newProperty = await response.json();
+
+      setLoading(false);
+      setSuccess(true);
+
+      // Optioneel: toon success-bericht even, daarna redirect
+      setTimeout(() => {
+        navigate("/properties"); // Verwijs naar de lijst van alle properties
+      }, 1000);
+    } catch (err) {
+      setLoading(false);
+      setError("😞 Kon geen eigendom toevoegen. " + err.message);
+    }
+  };
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-lg mx-auto">
-        {/* Top red banner */}
-        <div className="bg-red-600 p-4">
-          <h2 className="text-2xl font-semibold text-white">
-            Ajouter une propriété
-          </h2>
+    <div className="container mx-auto max-w-md mt-8 bg-white rounded-lg shadow-lg overflow-hidden">
+      {/* Koptekst */}
+      <h2 className="bg-red-600 text-white px-6 py-4 text-2xl font-bold">
+        Voeg een nieuwe eigendom toe
+      </h2>
+
+      {/* Formulier */}
+      <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        {/* Foutmelding */}
+        {error && <div className="text-red-600 font-medium">{error}</div>}
+
+        {/* Succesmelding */}
+        {success && (
+          <div className="text-green-600 font-medium">
+            Eigendom succesvol toegevoegd!
+          </div>
+        )}
+
+        {/* TITEL VELD */}
+        <div>
+          <label className="block font-medium mb-1" htmlFor="title">
+            Titel
+          </label>
+          <input
+            id="title"
+            type="text"
+            value={title}                               // Controlled waarde
+            onChange={(e) => setTitle(e.target.value)}  // Schrijf naar state bij elke wijziging
+            className="w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-red-400"
+            placeholder="Bijv. Modern appartement in Kirchberg"
+          />
         </div>
 
-        <div className="p-6 space-y-4">
-          {/* Show server/form error if any */}
-          {error && <p className="text-red-600 font-medium">{error}</p>}
-
-          {/* Show success message when property is added */}
-          {success && (
-            <p className="text-green-600 font-medium">
-              ✅ Property added successfully! Redirecting…
-            </p>
-          )}
-
-          {/* Show spinner if loading POST */}
-          {loading && <Spinner color="#dc2626" size={50} loading={true} />}
-
-          {/* Form fields */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="title"
-              placeholder="Property Title"
-              value={formData.title}
-              onChange={handleChange}
-              className="w-full border-gray-300 border rounded-lg p-3 focus:ring-2 focus:ring-red-400"
-            />
-            <input
-              type="text"
-              name="location"
-              placeholder="Location (City & Neighborhood)"
-              value={formData.location}
-              onChange={handleChange}
-              className="w-full border-gray-300 border rounded-lg p-3 focus:ring-2 focus:ring-red-400"
-            />
-            <input
-              type="number"
-              name="price"
-              placeholder="Price (€)"
-              min="0"                  /* <=== KBU: This prevents the spinner going below 0*/
-              className="w-full border-gray-300 border rounded-lg p-3 focus:ring-2 focus:ring-red-400"
-            />
-            <textarea
-              name="description"
-              placeholder="Detailed Description"
-              value={formData.description}
-              onChange={handleChange}
-              rows={6}
-              className="w-full border-gray-300 border rounded-lg p-3 focus:ring-2 focus:ring-red-400"
-            ></textarea>
-
-            {/* Submit & Clear buttons */}
-            <div className="flex gap-4">
-              <button
-                type="submit"
-                className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
-              >
-                Add Property
-              </button>
-              <button
-                type="button"
-                onClick={handleClear}
-                className="bg-gray-300 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-400 transition-colors"
-              >
-                Clear
-              </button>
-            </div>
-          </form>
+        {/* LOCATIE VELD */}
+        <div>
+          <label className="block font-medium mb-1" htmlFor="location">
+            Locatie
+          </label>
+          <input
+            id="location"
+            type="text"
+            value={location}                              // Controlled waarde
+            onChange={(e) => setLocation(e.target.value)} // Schrijf naar state bij elke wijziging
+            className="w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-red-400"
+            placeholder="Bijv. Kirchberg, Luxemburg Stad"
+          />
         </div>
-      </div>
+
+        {/* PRIJS VELD (spinner) */}
+        <div>
+          <label className="block font-medium mb-1" htmlFor="price">
+            Prijs (€)
+          </label>
+          <input
+            id="price"
+            type="number"
+            min="1"
+            step="1"
+            value={price}                               // Controlled waarde
+            onChange={(e) => setPrice(e.target.value)}  // Schrijf naar state bij elke wijziging
+            className="w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-red-400"
+            placeholder="Bijv. 950000"
+          />
+        </div>
+
+        {/* BESCHRIJVING VELD */}
+        <div>
+          <label className="block font-medium mb-1" htmlFor="description">
+            Beschrijving
+          </label>
+          <textarea
+            id="description"
+            rows="4"
+            value={description}                            // Controlled waarde
+            onChange={(e) => setDescription(e.target.value)} // Schrijf naar state bij elke wijziging
+            className="w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-red-400"
+            placeholder="Gedetailleerde beschrijving van de eigendom..."
+          />
+        </div>
+
+        {/* SUBMIT & CLEAR KNOPPEN */}
+        <div className="flex justify-between">
+          <button
+            type="submit"
+            disabled={loading} // Uitschakelen tijdens POST
+            className={`bg-red-600 text-white px-4 py-2 rounded-md font-medium hover:bg-red-700 transition-colors ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          >
+            {loading ? "Toevoegen…" : "Voeg eigendom toe"}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              // Wis alle velden en UI-vlaggen
+              setTitle("");
+              setLocation("");
+              setPrice("");
+              setDescription("");
+              setError("");
+              setSuccess(false);
+            }}
+            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md font-medium hover:bg-gray-400 transition-colors"
+          >
+            Wissen
+          </button>
+        </div>
+      </form>
     </div>
-  )
+  );
 }
 
-export default AddProperty
+export default AddProperty;
