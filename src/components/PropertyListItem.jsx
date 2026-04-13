@@ -152,12 +152,18 @@ function PropertyListItem(props) {
       </div>
 
       {/* Footer */}
-      <div className="p-4 bg-gray-50">
+      <div className="p-4 bg-gray-50 flex gap-2">
         <Link
           to={`/property/${props.property.id}`}
           className="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors text-sm font-medium"
         >
           Voir détails
+        </Link>
+        <Link
+          to={`/edit/${props.property.id}`}
+          className="inline-block bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition-colors text-sm font-medium"
+        >
+          ✏️ Edit
         </Link>
       </div>
     </div>
