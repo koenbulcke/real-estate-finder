@@ -30,10 +30,10 @@ function Contact() {
               <span className="font-semibold">Name:</span> Koen Bulcke
             </p>
             <p>
-              <span className="font-semibold">Email:</span> <a href="mailto:REMOVED" className="text-red-600 hover:underline">REMOVED</a>
+              <span className="font-semibold">Email:</span> <a href="mailto:REMOVED" className="text-red-600 hover:underline">************@*********</a>
             </p>
             <p>
-              <span className="font-semibold">Phone:</span> <a href="tel:+32472398090" className="text-red-600 hover:underline">REMOVED</a>
+              <span className="font-semibold">Phone:</span> <a href="tel:+32472398090" className="text-red-600 hover:underline">+32 *** ** ** **</a>
             </p>
           </div>
         </div>
