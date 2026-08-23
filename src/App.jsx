@@ -30,6 +30,7 @@ import PropertiesPage from './pages/PropertiesPage.jsx'
 import AddProperty from './pages/AddProperty.jsx'
 import EditProperty from './pages/EditProperty.jsx'
 import PropertyDetail from './pages/PropertyDetail.jsx'
+import PropertyPreview from './pages/PropertyPreview.jsx'
 import About from './pages/About.jsx'          
 import Contact from './pages/Contact.jsx'     
 import NotFoundPage from './pages/NotFoundPage.jsx'
@@ -52,6 +53,7 @@ function App() {
         <Route path="add" element={<AddProperty />} />
         <Route path="edit/:id" element={<EditProperty />} />
         <Route path="property/:id" element={<PropertyDetail />} />
+        <Route path="preview" element={<PropertyPreview />} />
 
         {/* New “About” and “Contact” routes */}
         <Route path="about" element={<About />} />
